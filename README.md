@@ -48,6 +48,7 @@ E:\MyProgram\MyProgram.ino:11: void loop()
 * `TRACE()` and `DUMP(variable)` works at global scope, provided that you call `ARDUINOTRACE_INIT()` to initialize the Serial port.
 * Flushes the Serial port to make sure that each line is complete
 * Uses Flash memory when possible
+* Header-only
 * Less than 100 lines of code
 
 ## A simple recipe to find where the code crashes
