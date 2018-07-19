@@ -1,0 +1,18 @@
+{
+  "name": "ArduinoTrace",
+  "keywords": "trace, debug, log, serial",
+  "description": "A dead-simple tracing library to debug your programs",
+  "homepage": "https://github.com/bblanchon/ArduinoTrace",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bblanchon/ArduinoTrace.git"
+  },
+  "version": "1.0.0",
+  "authors": {
+    "name": "Benoit Blanchon",
+    "url": "https://blog.benoitblanchon.fr"
+  },
+  "exclude": [],
+  "frameworks": "arduino",
+  "platforms": "*"
+}
