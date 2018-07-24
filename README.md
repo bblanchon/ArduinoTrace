@@ -3,6 +3,8 @@ ArduinoTrace
 
 A dead-simple tracing library to debug your Arduino programs.
 
+[![Youtube video: How to debug any Arduino program with tracing](video-thumbnail.png)](https://youtu.be/JHMpszgzWSg)
+
 ## Example
 
 All you need to do is call `TRACE()` or `DUMP(variable)`.
