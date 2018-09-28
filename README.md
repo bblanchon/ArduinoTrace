@@ -1,9 +1,9 @@
+![A quote from Brian Kernighan](banner.png)
+
 ArduinoTrace
 ============
 
 A dead-simple tracing library to debug your Arduino programs.
-
-[![Youtube video: How to debug any Arduino program with tracing](video-thumbnail.png)](https://youtu.be/JHMpszgzWSg)
 
 ## Example
 
@@ -93,3 +93,7 @@ In this case, you can always go back to the good-old tracing technique.
 EspExceptionDecoder is an awesome tool, but unfortunately, the results are not always accurate; you
 often see unrelated function names in the stack.
 I don't know why that happens (I guess it's due to compiler optimizations), but whatever the reason, it's still good to have a fallback option.
+
+## Want to see how this library works?
+
+[![Youtube video: How to debug any Arduino program with tracing](video-thumbnail.png)](https://youtu.be/JHMpszgzWSg)
