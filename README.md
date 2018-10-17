@@ -94,6 +94,11 @@ EspExceptionDecoder is an awesome tool, but unfortunately, the results are not a
 often see unrelated function names in the stack.
 I don't know why that happens (I guess it's due to compiler optimizations), but whatever the reason, it's still good to have a fallback option.
 
+## Tutorials
+
+* [ESP32 / ESP8266 Arduino: Debugging with the ArduinoTrace library](https://techtutorialsx.com/2018/10/11/esp32-esp8266-arduino-debugging-with-the-arduinotrace-library/) (`techtutorialsx.com`)
+* [ESP32 / ESP8266 ArduinoTrace: using the TRACE macro](https://techtutorialsx.com/2018/10/12/esp32-esp8266-arduinotrace-using-the-trace-macro/) (`techtutorialsx.com`)
+
 ## Want to see how this library works?
 
 [![Youtube video: How to debug any Arduino program with tracing](video-thumbnail.png)](https://youtu.be/JHMpszgzWSg)
