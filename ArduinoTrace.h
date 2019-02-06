@@ -1,5 +1,5 @@
 // ArduinoTrace - github.com/bblanchon/ArduinoTrace
-// Copyright Benoit Blanchon 2018
+// Copyright Benoit Blanchon 2018-2019
 // MIT License
 //
 // A simple tracing macro to debug you program.
