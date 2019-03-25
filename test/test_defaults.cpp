@@ -9,7 +9,7 @@
 void test_trace() {
   Serial.clear();
   TRACE();
-  ASSERT_RE(Serial.log(), ".*test.cpp:\\d+: void test_trace\\(\\)\r\n"
+  ASSERT_RE(Serial.log(), ".*test_defaults.cpp:\\d+: void test_trace\\(\\)\r\n"
                           "flush\\(\\)\r\n");
 }
 
@@ -17,7 +17,7 @@ void test_dump() {
   Serial.clear();
   int answer = 42;
   DUMP(answer);
-  ASSERT_RE(Serial.log(), ".*test.cpp:\\d+: answer = 42\r\n"
+  ASSERT_RE(Serial.log(), ".*test_defaults.cpp:\\d+: answer = 42\r\n"
                           "flush\\(\\)\r\n");
 }
 

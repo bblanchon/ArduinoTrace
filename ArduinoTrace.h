@@ -19,6 +19,10 @@
 
 #include <Arduino.h>
 
+#ifndef ARDUINOTRACE_SERIAL
+#define ARDUINOTRACE_SERIAL Serial
+#endif
+
 #ifndef ARDUINOTRACE_ENABLE_PROGMEM
 #if ARDUINO_ARCH_ESP8266
 // avoid error 'XXX causes a section type conflict with YYY'
@@ -36,18 +40,19 @@ typedef const char *prefix_type;
 #endif
 
 struct Initializer {
-  Initializer(int bauds) {
-    Serial.begin(bauds);
-    while (!Serial)
+  template <typename TSerial> Initializer(TSerial &serial, int bauds) {
+    serial.begin(bauds);
+    while (!serial)
       continue;
   }
 };
 
 struct Printer {
-  template <typename T> Printer(prefix_type prefix, const T &content) {
-    Serial.print(prefix);
-    Serial.println(content);
-    Serial.flush();
+  template <typename TSerial, typename TValue>
+  Printer(TSerial &serial, prefix_type prefix, const TValue &content) {
+    serial.print(prefix);
+    serial.println(content);
+    serial.flush();
   }
 };
 } // namespace ArduinoTrace
@@ -63,10 +68,11 @@ struct Printer {
 
 #define ARDUINOTRACE_PRINT(id, prefix, content)                                \
   ArduinoTrace::Printer ARDUINOTRACE_CONCAT(__tracer, id)(                     \
-      ARDUINOTRACE_FLASHIFY(prefix), content);
+      ARDUINOTRACE_SERIAL, ARDUINOTRACE_FLASHIFY(prefix), content);
 
 #define ARDUINOTRACE_INIITIALIZE(id, bauds)                                    \
-  ArduinoTrace::Initializer ARDUINOTRACE_CONCAT(__initializer, id)(bauds);
+  ArduinoTrace::Initializer ARDUINOTRACE_CONCAT(__initializer, id)(            \
+      ARDUINOTRACE_SERIAL, bauds);
 
 #define ARDUINOTRACE_TRACE_PREFIX(file, line)                                  \
   file ":" ARDUINOTRACE_STRINGIFY(line) ": "

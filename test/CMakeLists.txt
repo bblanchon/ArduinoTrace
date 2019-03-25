@@ -1,12 +1,9 @@
-add_executable(ArduinoTraceTest
-	test.cpp
-)
-
-target_compile_features(ArduinoTraceTest
-	PRIVATE
-		cxx_std_11
-)
-
 include_directories(.)
 
-add_test(ArduinoTraceTest ArduinoTraceTest)
+add_executable(test_defaults test_defaults.cpp)
+target_compile_features(test_defaults PRIVATE cxx_std_11)
+add_test(defaults test_defaults)
+
+add_executable(test_alternative_serial test_alternative_serial.cpp)
+target_compile_features(test_alternative_serial PRIVATE cxx_std_11)
+add_test(alternative_serial test_alternative_serial)
