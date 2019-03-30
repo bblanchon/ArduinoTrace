@@ -1,8 +1,8 @@
 ArduinoTrace: changelog
 =======================
 
-HEAD
-----
+1.1.0 (2019/03/30)
+------------------
 
 * Added `ARDUINOTRACE_SERIAL` to allow changing the serial port (issue #1)
 * Reduced the program size by storing each file name only once
