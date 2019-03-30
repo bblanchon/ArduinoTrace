@@ -27,10 +27,10 @@ void loop() {
 The program above would print:
 
 ```text
-E:\MyProgram\MyProgram.ino:7: someValue = 42
-E:\MyProgram\MyProgram.ino:11: void loop()
-E:\MyProgram\MyProgram.ino:11: void loop()
-E:\MyProgram\MyProgram.ino:11: void loop()
+MyProgram.ino:7: someValue = 42
+MyProgram.ino:11: void loop()
+MyProgram.ino:11: void loop()
+MyProgram.ino:11: void loop()
 ...
 ```
 
@@ -47,7 +47,7 @@ E:\MyProgram\MyProgram.ino:11: void loop()
     - line number
     - variable's name
     - variable's value
-* `TRACE()` and `DUMP(variable)` works at global scope, provided that you call `ARDUINOTRACE_INIT()` to initialize the Serial port.
+* `TRACE()` and `DUMP(variable)` work at global scope, provided that you call `ARDUINOTRACE_INIT()` to initialize the Serial port.
 * Flushes the Serial port to make sure that each line is complete
 * Uses Flash memory when possible
 * Header-only
@@ -59,6 +59,22 @@ E:\MyProgram\MyProgram.ino:11: void loop()
 2. run the program
 3. view all traces in the Serial monitor
 4. repeat the process until you find the line that causes the crash
+
+## Configuration
+
+| Setting                        | Default  | Description                                                                                                                                                                                                                                       |
+|:-------------------------------|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ARDUINOTRACE_ENABLE`          | `1`      | Determines whether the library is active. If set to `1`, ArduinoTrace is active, and prints traces to the serial port. Set this value to `0` to disable all the traces at once.                                                                   |
+| `ARDUINOTRACE_ENABLE_PROGMEM`  | `1`      | Determines whether the strings are stored in Flash or RAM. If defined to `1` (it's the default), ArduinoTrace places the string in the Flash memory to reduce the memory consumption. Only set this value to `0` if you have a compilation issue. |
+| `ARDUINOTRACE_ENABLE_FULLPATH` | `0`      | Determines how the filename is written. If set to `1`, ArduinoTrace prints the full path of the file. If set to `0`, ArduinoTrace only prints the filename.                                                                                       |
+| `ARDUINOTRACE_SERIAL`          | `Serial` | Define the serial port to use. Change this value to use an alternative serial port, for example, `SerialUSB`.                                                                                                                                     |
+
+To change one of the settings above, you must define the symbol before including the library. For example:
+
+```c++
+#define ARDUINOTRACE_ENABLE 0  // Disable all traces
+#include <ArduinoTrace.h>
+```
 
 ## FAQ
 
