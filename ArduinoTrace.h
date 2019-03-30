@@ -24,22 +24,15 @@
 #endif
 
 #ifndef ARDUINOTRACE_ENABLE_PROGMEM
-#if !defined(ARDUINO) || ARDUINO_ARCH_ESP8266
-// avoid error 'XXX causes a section type conflict with YYY'
-#define ARDUINOTRACE_ENABLE_PROGMEM 0
-#else
+#ifdef PROGMEM
 #define ARDUINOTRACE_ENABLE_PROGMEM 1
+#else
+#define ARDUINOTRACE_ENABLE_PROGMEM 0
 #endif
 #endif
 
 namespace ArduinoTrace {
-#if ARDUINOTRACE_ENABLE_PROGMEM
-typedef const __FlashStringHelper *prefix_type;
-#else
-typedef const char *prefix_type;
-#endif
-
-constexpr unsigned strlen(const char *str) {
+constexpr size_t strlen(const char *str) {
   return str[0] ? strlen(str + 1) + 1 : 0;
 }
 
@@ -58,16 +51,18 @@ struct string {
 #endif
 };
 
-template <typename TSourceString, unsigned length, char... chars>
+template <typename TSourceString, size_t remainingLength,
+          char... collectedChars>
 struct string_maker {
-  using result = typename string_maker<TSourceString, length - 1,
-                                       TSourceString::data()[length - 1],
-                                       chars...>::result;
+  using result =
+      typename string_maker<TSourceString, remainingLength - 1,
+                            TSourceString::data()[remainingLength - 1],
+                            collectedChars...>::result;
 };
 
-template <typename TSourceString, char... chars>
-struct string_maker<TSourceString, 0, chars...> {
-  using result = string<chars..., '\0'>;
+template <typename TSourceString, char... collectedChars>
+struct string_maker<TSourceString, 0, collectedChars...> {
+  using result = string<collectedChars..., '\0'>;
 };
 
 template <typename TStringSource>
@@ -82,12 +77,12 @@ struct Initializer {
   }
 };
 
-template <typename TFilename>
+template <typename TFilename, typename TPrefix>
 struct Printer {
   template <typename TSerial, typename TValue>
-  Printer(TSerial &serial, prefix_type prefix, const TValue &content) {
+  Printer(TSerial &serial, const TValue &content) {
     serial.print(make_string<TFilename>{}.data());
-    serial.print(prefix);
+    serial.print(make_string<TPrefix>{}.data());
     serial.println(content);
     serial.flush();
   }
@@ -103,13 +98,16 @@ struct Printer {
 #define ARDUINOTRACE_FLASHIFY(X) X
 #endif
 
-#define ARDUINOTRACE_PRINT(id, file, prefix, content)                 \
-  {                                                                   \
-    struct __filename {                                               \
-      constexpr static char const *data() { return file; }            \
-    };                                                                \
-    ArduinoTrace::Printer<__filename> __tracer(                       \
-        ARDUINOTRACE_SERIAL, ARDUINOTRACE_FLASHIFY(prefix), content); \
+#define ARDUINOTRACE_PRINT(id, file, prefix, content)                         \
+  {                                                                           \
+    struct __filename {                                                       \
+      constexpr static char const *data() { return file; }                    \
+    };                                                                        \
+    struct __prefix {                                                         \
+      constexpr static char const *data() { return prefix; }                  \
+    };                                                                        \
+    ArduinoTrace::Printer<__filename, __prefix> __tracer(ARDUINOTRACE_SERIAL, \
+                                                         content);            \
   }
 
 #define ARDUINOTRACE_INIITIALIZE(id, bauds)                         \
