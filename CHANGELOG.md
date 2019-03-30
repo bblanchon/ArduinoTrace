@@ -8,6 +8,7 @@ HEAD
 * Reduced the program size by storing each file name only once
 * Enabled Flash string on ESP8266
 * Print only the filename instead of the full path
+  (You can set `ARDUINOTRACE_ENABLE_FULLPATH` to `1` to restore the original behavior)
 
 1.0.0 (2018/07/19)
 ------------------

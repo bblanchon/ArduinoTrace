@@ -31,6 +31,12 @@
 #endif
 #endif
 
+#ifndef ARDUINOTRACE_ENABLE_FULLPATH
+#define ARDUINOTRACE_ENABLE_FULLPATH 0
+#else
+#define ARDUINOTRACE_ENABLE_FULLPATH 1
+#endif
+
 namespace ArduinoTrace {
 constexpr size_t strlen(const char *str) {
   return str[0] ? strlen(str + 1) + 1 : 0;
@@ -60,6 +66,7 @@ struct string_maker {
                             collectedChars...>::result;
 };
 
+#if ARDUINOTRACE_ENABLE_FULLPATH == 0
 template <typename TSourceString, size_t remainingLength,
           char... collectedChars>
 struct string_maker<TSourceString, remainingLength, '/', collectedChars...> {
@@ -71,6 +78,7 @@ template <typename TSourceString, size_t remainingLength,
 struct string_maker<TSourceString, remainingLength, '\\', collectedChars...> {
   using result = string<collectedChars..., '\0'>;
 };
+#endif
 
 template <typename TSourceString, char... collectedChars>
 struct string_maker<TSourceString, 0, collectedChars...> {
