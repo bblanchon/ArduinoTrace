@@ -11,3 +11,7 @@ add_test(alternative_serial test_alternative_serial)
 add_executable(test_full_path test_full_path.cpp)
 target_compile_features(test_full_path PRIVATE cxx_std_11)
 add_test(full_path test_full_path)
+
+add_executable(test_disabled test_disabled.cpp)
+target_compile_features(test_disabled PRIVATE cxx_std_11)
+add_test(disabled test_disabled)

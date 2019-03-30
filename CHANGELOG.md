@@ -9,6 +9,7 @@ HEAD
 * Enabled Flash string on ESP8266
 * Print only the filename instead of the full path
   (You can set `ARDUINOTRACE_ENABLE_FULLPATH` to `1` to restore the original behavior)
+* Added `ARDUINOTRACE_ENABLE` to enable/disable all traces at once (issue #2)
 
 1.0.0 (2018/07/19)
 ------------------

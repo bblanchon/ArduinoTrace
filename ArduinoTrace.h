@@ -19,6 +19,14 @@
 
 #include <Arduino.h>
 
+#ifndef ARDUINOTRACE_ENABLE
+#define ARDUINOTRACE_ENABLE 1
+#else
+#define ARDUINOTRACE_ENABLE 0
+#endif
+
+#if ARDUINOTRACE_ENABLE == 1
+
 #ifndef ARDUINOTRACE_SERIAL
 #define ARDUINOTRACE_SERIAL Serial
 #endif
@@ -162,3 +170,11 @@ struct Printer {
 #define DUMP(variable)                      \
   ARDUINOTRACE_PRINT(__COUNTER__, __FILE__, \
                      ARDUINOTRACE_DUMP_PREFIX(__LINE__, variable), variable)
+
+#else  // ie ARDUINOTRACE_ENABLE == 0
+
+#define ARDUINOTRACE_INIT(bauds)
+#define TRACE()
+#define DUMP(variable)
+
+#endif
