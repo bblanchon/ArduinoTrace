@@ -60,6 +60,18 @@ struct string_maker {
                             collectedChars...>::result;
 };
 
+template <typename TSourceString, size_t remainingLength,
+          char... collectedChars>
+struct string_maker<TSourceString, remainingLength, '/', collectedChars...> {
+  using result = string<collectedChars..., '\0'>;
+};
+
+template <typename TSourceString, size_t remainingLength,
+          char... collectedChars>
+struct string_maker<TSourceString, remainingLength, '\\', collectedChars...> {
+  using result = string<collectedChars..., '\0'>;
+};
+
 template <typename TSourceString, char... collectedChars>
 struct string_maker<TSourceString, 0, collectedChars...> {
   using result = string<collectedChars..., '\0'>;

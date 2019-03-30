@@ -14,7 +14,7 @@ void test_trace() {
   Serial2.clear();
   TRACE();
   ASSERT_RE(Serial2.log(),
-            ".*test_alternative_serial.cpp:\\d+: void test_trace\\(\\)\r\n"
+            "test_alternative_serial.cpp:\\d+: void test_trace\\(\\)\r\n"
             "flush\\(\\)\r\n");
 }
 
@@ -22,8 +22,9 @@ void test_dump() {
   Serial2.clear();
   int answer = 42;
   DUMP(answer);
-  ASSERT_RE(Serial2.log(), ".*test_alternative_serial.cpp:\\d+: answer = 42\r\n"
-                           "flush\\(\\)\r\n");
+  ASSERT_RE(Serial2.log(),
+            "test_alternative_serial.cpp:\\d+: answer = 42\r\n"
+            "flush\\(\\)\r\n");
 }
 
 void test_init() {
