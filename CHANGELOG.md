@@ -1,6 +1,11 @@
 ArduinoTrace: changelog
 =======================
 
+1.1.1 (2019/04/15)
+------------------
+
+* Fixed warning: "ARDUINOTRACE_ENABLE" redefined
+
 1.1.0 (2019/03/30)
 ------------------
 
