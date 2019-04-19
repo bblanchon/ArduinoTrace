@@ -136,7 +136,7 @@ struct Printer {
                                                          content);            \
   }
 
-#define ARDUINOTRACE_INIITIALIZE(id, bauds)                         \
+#define ARDUINOTRACE_INITIALIZE(id, bauds)                          \
   ArduinoTrace::Initializer ARDUINOTRACE_CONCAT(__initializer, id)( \
       ARDUINOTRACE_SERIAL, bauds);
 
@@ -149,7 +149,7 @@ struct Printer {
 //
 // Use this macro only if you want to call TRACE() at global scope,
 // in other cases, call Serial.begin() in your setup() function, as usual.
-#define ARDUINOTRACE_INIT(bauds) ARDUINOTRACE_INIITIALIZE(__COUNTER__, bauds);
+#define ARDUINOTRACE_INIT(bauds) ARDUINOTRACE_INITIALIZE(__COUNTER__, bauds);
 
 // Adds a trace in the Serial port
 //
