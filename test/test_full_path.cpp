@@ -1,5 +1,5 @@
 // ArduinoTrace - github.com/bblanchon/ArduinoTrace
-// Copyright Benoit Blanchon 2018-2019
+// Copyright Benoit Blanchon 2018-2020
 // MIT License
 //
 #define ARDUINOTRACE_ENABLE_FULLPATH 1
