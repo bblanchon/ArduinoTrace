@@ -4,4 +4,4 @@ enable_testing()
 
 include_directories(.)
 
-add_subdirectory(test)
+add_subdirectory(extras/test)

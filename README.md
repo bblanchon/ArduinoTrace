@@ -1,4 +1,4 @@
-![A quote from Brian Kernighan](banner.png)
+![A quote from Brian Kernighan](extras/img/banner.png)
 
 ArduinoTrace
 ============
@@ -117,4 +117,4 @@ I don't know why that happens (I guess it's due to compiler optimizations), but 
 
 ## Want to see how this library works?
 
-[![Youtube video: How to debug any Arduino program with tracing](video-thumbnail.png)](https://youtu.be/JHMpszgzWSg)
+[![Youtube video: How to debug any Arduino program with tracing](extras/img/video-thumbnail.png)](https://youtu.be/JHMpszgzWSg)
