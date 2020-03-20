@@ -5,6 +5,7 @@ HEAD
 ----
 
 * Move auxiliary content to `extras/` to comply with new library layout
+* Fixed TRACE() crashing ESP8266 with PlatformIO
 
 1.1.1 (2019/04/15)
 ------------------

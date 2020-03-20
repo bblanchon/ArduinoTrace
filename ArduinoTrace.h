@@ -43,6 +43,14 @@
 #define ARDUINOTRACE_ENABLE_FULLPATH 1
 #endif
 
+#ifndef ARDUINOTRACE_FUNCTION_NAME_IN_FLASH
+#if defined(ESP8266)
+#define ARDUINOTRACE_FUNCTION_NAME_IN_FLASH 1
+#else
+#define ARDUINOTRACE_FUNCTION_NAME_IN_FLASH 0
+#endif
+#endif
+
 namespace ArduinoTrace {
 constexpr size_t strlen(const char *str) {
   return str[0] ? strlen(str + 1) + 1 : 0;
@@ -124,6 +132,13 @@ struct Printer {
 #define ARDUINOTRACE_FLASHIFY(X) X
 #endif
 
+#if ARDUINOTRACE_FUNCTION_NAME_IN_FLASH
+#define ARDUINOTRACE_FUNCTION_NAME \
+  reinterpret_cast<const __FlashStringHelper *>(__PRETTY_FUNCTION__)
+#else
+#define ARDUINOTRACE_FUNCTION_NAME __PRETTY_FUNCTION__
+#endif
+
 #define ARDUINOTRACE_PRINT(id, file, prefix, content)                         \
   {                                                                           \
     struct __filename {                                                       \
@@ -156,9 +171,10 @@ struct Printer {
 // Call this macro anywhere, including at global scope.
 // However, if you use it at global scope, you need to call ARDUINOTRACE_INIT()
 // first, otherwise, the Serial port will not be ready.
-#define TRACE()                             \
-  ARDUINOTRACE_PRINT(__COUNTER__, __FILE__, \
-                     ARDUINOTRACE_TRACE_PREFIX(__LINE__), __PRETTY_FUNCTION__)
+#define TRACE()                                           \
+  ARDUINOTRACE_PRINT(__COUNTER__, __FILE__,               \
+                     ARDUINOTRACE_TRACE_PREFIX(__LINE__), \
+                     ARDUINOTRACE_FUNCTION_NAME)
 
 // Prints the value of a variable.
 //
