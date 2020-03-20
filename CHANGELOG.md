@@ -1,8 +1,8 @@
 ArduinoTrace: changelog
 =======================
 
-HEAD
-----
+1.1.2 (2020/03/20)
+------------------
 
 * Move auxiliary content to `extras/` to comply with new library layout
 * Fixed TRACE() crashing ESP8266 with PlatformIO
