@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/bblanchon/ArduinoTrace.git"
   },
-  "version": "1.1.2",
+  "version": "1.2.0",
   "authors": {
     "name": "Benoit Blanchon",
     "url": "https://blog.benoitblanchon.fr"
