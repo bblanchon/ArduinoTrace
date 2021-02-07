@@ -1,6 +1,11 @@
 ArduinoTrace: changelog
 =======================
 
+HEAD
+----
+
+* Fixed `ARDUINOTRACE_ENABLE_FULLPATH` being overwritten
+
 1.1.2 (2020/03/20)
 ------------------
 
