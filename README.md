@@ -3,6 +3,7 @@
 ArduinoTrace
 ============
 
+[![arduino-library-badge](https://www.ardu-badge.com/badge/ArduinoTrace.svg?version=1.2.0)](https://www.ardu-badge.com/ArduinoTrace/1.2.0)
 ![Continuous Integration](https://github.com/bblanchon/ArduinoTrace/workflows/Continuous%20Integration/badge.svg)
 
 A dead-simple tracing library to debug your Arduino programs.
