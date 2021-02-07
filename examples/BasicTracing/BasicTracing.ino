@@ -4,14 +4,15 @@
 
 #include <ArduinoTrace.h>
 
-int someValue = 42;
+int value = 0;
 
 void setup() {
   Serial.begin(9600);
-  DUMP(someValue);
+  TRACE();
 }
 
 void loop() {
-  TRACE();
-  delay(1000);
+  value++;
+  DUMP(value);
+  BREAK();
 }

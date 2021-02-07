@@ -119,6 +119,11 @@ struct Printer {
     serial.flush();
   }
 };
+
+template <typename TSerial>
+inline void pause(TSerial &serial) {
+  while (serial.read() != '\n') delay(10);
+}
 }  // namespace ArduinoTrace
 
 #define ARDUINOTRACE_STRINGIFY(X) #X
@@ -183,10 +188,19 @@ struct Printer {
   ARDUINOTRACE_PRINT(__COUNTER__, __FILE__, \
                      ARDUINOTRACE_DUMP_PREFIX(__LINE__, variable), variable)
 
+#define BREAK()                                               \
+  do {                                                        \
+    ARDUINOTRACE_PRINT(__COUNTER__, __FILE__,                 \
+                       ARDUINOTRACE_TRACE_PREFIX(__LINE__),   \
+                       "BREAK! (press [enter] to continue)"); \
+    ArduinoTrace::pause(ARDUINOTRACE_SERIAL);                 \
+  } while (false)
+
 #else  // ie ARDUINOTRACE_ENABLE == 0
 
 #define ARDUINOTRACE_INIT(bauds)
 #define TRACE()
 #define DUMP(variable)
+#define BREAK()
 
 #endif

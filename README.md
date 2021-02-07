@@ -12,25 +12,30 @@ All you need to do is call `TRACE()` or `DUMP(variable)`.
 ```c++
 #include <ArduinoTrace.h>
 
-int someValue = 42;
+int value = 0;
 
 void setup() {
-    Serial.begin(9600);
-    DUMP(someValue);
+  Serial.begin(9600);
+  TRACE();
 }
 
 void loop() {
-    TRACE();
+  value++;
+  DUMP(value);
+  BREAK();
 }
 ```
 
 The program above would print:
 
 ```text
-MyProgram.ino:7: someValue = 42
-MyProgram.ino:11: void loop()
-MyProgram.ino:11: void loop()
-MyProgram.ino:11: void loop()
+MyProgram.ino:7: void setup()
+MyProgram.ino:12: value = 1
+MyProgram.ino:13: BREAK! (press [enter] to continue)
+MyProgram.ino:12: value = 2
+MyProgram.ino:13: BREAK! (press [enter] to continue)
+MyProgram.ino:12: value = 3
+MyProgram.ino:13: BREAK! (press [enter] to continue)
 ...
 ```
 
@@ -47,11 +52,13 @@ MyProgram.ino:11: void loop()
     - line number
     - variable's name
     - variable's value
+* `BREAK()` pauses the program until you send a line-break to the Serial
 * `TRACE()` and `DUMP(variable)` work at global scope, provided that you call `ARDUINOTRACE_INIT()` to initialize the Serial port.
 * Flushes the Serial port to make sure that each line is complete
 * Uses Flash memory when possible
+* Deduplicates strings a much as reasonable feasible
 * Header-only
-* Less than 100 lines of code
+* Roughly 200 lines of code
 
 ## A simple recipe to find where the code crashes
 

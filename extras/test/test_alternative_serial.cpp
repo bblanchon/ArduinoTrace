@@ -27,6 +27,15 @@ void test_dump() {
             "flush\\(\\)\r\n");
 }
 
+void test_break() {
+  Serial2.clear();
+  BREAK();
+  ASSERT_RE(Serial2.log(),
+            "test_alternative_serial.cpp:\\d+: BREAK.+\r\n"
+            "flush\\(\\)\r\n"
+            "read\\(\\)\r\n");
+}
+
 void test_init() {
   Serial2.clear();
   ARDUINOTRACE_INIT(9600);
@@ -36,5 +45,6 @@ void test_init() {
 int main() {
   test_trace();
   test_dump();
+  test_break();
   test_init();
 }

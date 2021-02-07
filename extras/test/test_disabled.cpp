@@ -20,6 +20,12 @@ void test_dump() {
   ASSERT_RE(Serial.log(), "");
 }
 
+void test_break() {
+  Serial.clear();
+  BREAK();
+  ASSERT_RE(Serial.log(), "");
+}
+
 void test_init() {
   Serial.clear();
   ARDUINOTRACE_INIT(9600);
@@ -29,5 +35,6 @@ void test_init() {
 int main() {
   test_trace();
   test_dump();
+  test_break();
   test_init();
 }
