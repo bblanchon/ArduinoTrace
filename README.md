@@ -3,6 +3,8 @@
 ArduinoTrace
 ============
 
+![Continuous Integration](https://github.com/bblanchon/ArduinoTrace/workflows/Continuous%20Integration/badge.svg)
+
 A dead-simple tracing library to debug your Arduino programs.
 
 ## Example

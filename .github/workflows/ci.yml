@@ -1,0 +1,17 @@
+name: Continuous Integration
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Configure
+        run: cmake -DCMAKE_BUILD_TYPE=Debug .
+      - name: Build
+        run: cmake --build .
+      - name: Test
+        run: ctest --output-on-failure -C Debug .
